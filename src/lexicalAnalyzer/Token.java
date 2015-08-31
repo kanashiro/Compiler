@@ -34,31 +34,31 @@ public class Token {
 	public void print(){
 		switch (this.type) {
 		case (-3):
-			System.out.println("primario: " + this.primaryToken + " secundario: " + this.secondaryToken  + "tipo: unknown");	
+			System.out.println("primario: " + this.primaryToken + " secundario: " + this.secondaryToken  + " tipo: unknown");	
 			break;
 	
 		case (-2):
-			System.out.println("primario: " + this.primaryToken + " secundario: " + this.secondaryToken  + "tipo: simbol");
+			System.out.println("primario: " + this.primaryToken + " secundario: " + this.secondaryToken  + " tipo: simbol");
 			break;
 	
 		case (-1):
-			System.out.println("primario: " + this.primaryToken + " secundario: " + this.secondaryToken  + "tipo: keyWord");
+			System.out.println("primario: " + this.primaryToken + " secundario: " + this.secondaryToken  + " tipo: keyWord");
 			break;
 		
-		case (-0):
-			System.out.println("primario: " + this.primaryToken + " secundario: " + this.secondaryToken  + "tipo: char");
+		case (0):
+			System.out.println("primario: " + this.primaryToken + " secundario: " + this.secondaryToken  + " tipo: char");
 			break;
 		
 		case (1):
-			System.out.println("primario: " + this.primaryToken + " secundario: " + this.secondaryToken  + "tipo: int");
+			System.out.println("primario: " + this.primaryToken + " secundario: " + this.secondaryToken  + " tipo: int");
 			break;
 		
 		case (2):
-			System.out.println("primario: " + this.primaryToken + " secundario: " + this.secondaryToken  + "tipo: string");
+			System.out.println("primario: " + this.primaryToken + " secundario: " + this.secondaryToken  + " tipo: string");
 			break;
 		
 		case (3):
-			System.out.println("primario: " + this.primaryToken + " secundario: " + this.secondaryToken  + "tipo: id");
+			System.out.println("primario: " + this.primaryToken + " secundario: " + this.secondaryToken  + " tipo: id");
 			break;
 		
 		default:

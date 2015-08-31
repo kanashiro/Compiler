@@ -8,7 +8,7 @@ import lexicalAnalyzer.LexicalAnalyzer;
 public class Compiler {
 
 	public static void main(String[] args) throws IOException {
-		File program = new File("Resources/Programs/decalque.png");
+		File program = new File("Resources/Programs/programa1.txt");
 		
 		// Analizador Léxico
 		

@@ -7,14 +7,15 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import com.sun.corba.se.impl.io.ValueUtility;
 
 public class LexicalAnalyzer {
 
-	private static String[] names = {};
+	private static ArrayList<String> names = new ArrayList<String>();
 
-	private static String[] constants = {};
+	private static ArrayList<String> constants = new ArrayList<String>();
 
 	private char nextChar = ' ';
 
@@ -76,7 +77,7 @@ public class LexicalAnalyzer {
 			} while (Character.isLetterOrDigit(this.nextChar)
 					|| this.nextChar == '_');
 			text += '\0';
-
+			System.out.println("word: " + text);
 			token = searchKeyWord(text);
 		} else if (Character.isDigit(this.nextChar)) {
 			String numeral = "";
@@ -86,7 +87,7 @@ public class LexicalAnalyzer {
 				this.nextChar = readChar();
 			} while (Character.isDigit(this.nextChar));
 			numeral += '\0';
-
+			System.out.println("numeral: " + numeral);
 			token = new Token(keyWords.length - 3, searchConst(numeral), 1);
 		} else if (this.nextChar == '"') {
 			String string = "";
@@ -96,16 +97,18 @@ public class LexicalAnalyzer {
 				this.nextChar = readChar();
 			} while (this.nextChar != '"');
 			string += '"';
-
+			System.out.println("strinval: " + string);
 			token = new Token(keyWords.length - 3, searchConst(string), 2);
 		} else if (this.nextChar == '\'') {
 			this.nextChar = readChar();
+			System.out.println("char: " + this.nextChar);
 			token = new Token(keyWords.length - 4,
 					searchConst(Character.toString(this.nextChar)), 0);
 			// pular ' e ler o próximo
 			this.nextChar = readChar();
 			this.nextChar = readChar();
 		} else {
+			System.out.println("simbol: " + this.nextChar);
 			token = searchSimbol(Character.toString(this.nextChar));
 		}
 
@@ -139,29 +142,27 @@ public class LexicalAnalyzer {
 	public int searchName(String name) {
 		int i = 0;
 
-		for (i = 0; i < names.length; i++) {
-			if (names[i] == name) {
+		for (i = 0; i < names.size(); i++) {
+			if (names.get(i) == name) {
 				return i;
 			}
 		}
 
-		i = names.length;
-		names[i] = name;
-		return i;
+		names.add(name);
+		return names.size();
 	}
 
 	public int searchConst(String constant) {
 		int i = 0;
 
-		for (i = 0; i < constants.length; i++) {
-			if (names[i] == constant) {
+		for (i = 0; i < constants.size(); i++) {
+			if (constants.get(i) == constant) {
 				return i;
 			}
 		}
 
-		i = constants.length;
-		constants[i] = constant;
-		return i;
+		constants.add(constant);
+		return constants.size();
 	}
 
 }
