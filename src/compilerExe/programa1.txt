@@ -1,0 +1,3 @@
+function soma(integer a1, integer a2) : integer{
+	return a1+a2;
+}
