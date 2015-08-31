@@ -19,7 +19,7 @@ public class LexicalAnalyzer {
 
 	private char nextChar = ' ';
 
-	private InputStreamReader program;
+	private BufferedReader program;
 
 	private static final String[] keyWords = {
 
@@ -41,22 +41,28 @@ public class LexicalAnalyzer {
 	public LexicalAnalyzer(File arq) throws IOException {
 
 		FileInputStream in = new FileInputStream(arq);
-		this.program = new InputStreamReader(in);
+		program = new BufferedReader(new InputStreamReader(in));
 	}
 
 	public void Analyzer() throws IOException {
-		Token token;
+		Token token = nextToken();
 
-		do {
-			token = nextToken();
+		 while (token.type != -3){
+			
 			token.print();
-		} while (token.type != -3);
+			token = nextToken();
+		}
 
 	}
 
 	public char readChar() throws IOException {
-		char caracter = (char) (this.program.read());
-
+		int value ;
+		do {
+			value = this.program.read();	
+		} while (value == 10 || value == 13);
+		
+		char caracter = (char) (value);
+		
 		return caracter;
 	}
 
@@ -66,7 +72,7 @@ public class LexicalAnalyzer {
 			// ignorar todos os espaços até chegar no próximo token
 			this.nextChar = readChar();
 		}
-
+		
 		// testando se é letra
 		if (Character.isLetter(this.nextChar)) {
 			String text = "";
@@ -76,7 +82,7 @@ public class LexicalAnalyzer {
 				this.nextChar = readChar();
 			} while (Character.isLetterOrDigit(this.nextChar)
 					|| this.nextChar == '_');
-			text += '\0';
+			
 			System.out.println("word: " + text);
 			token = searchKeyWord(text);
 		} else if (Character.isDigit(this.nextChar)) {
@@ -86,7 +92,7 @@ public class LexicalAnalyzer {
 				numeral += this.nextChar;
 				this.nextChar = readChar();
 			} while (Character.isDigit(this.nextChar));
-			numeral += '\0';
+			
 			System.out.println("numeral: " + numeral);
 			token = new Token(keyWords.length - 3, searchConst(numeral), 1);
 		} else if (this.nextChar == '"') {
@@ -110,6 +116,7 @@ public class LexicalAnalyzer {
 		} else {
 			System.out.println("simbol: " + this.nextChar);
 			token = searchSimbol(Character.toString(this.nextChar));
+			this.nextChar = readChar();
 		}
 
 		return token;
@@ -119,8 +126,8 @@ public class LexicalAnalyzer {
 		int i = 0;
 
 		for (i = 0; i < keyWords.length; i++) {
-			if (keyWords[i] == name) {
-				return new Token(i);
+			if (keyWords[i].equals(name)) {
+				return new Token(i, -1, -1);
 			}
 		}
 
@@ -131,7 +138,7 @@ public class LexicalAnalyzer {
 		int i = 0;
 
 		for (i = 0; i < simbols.length; i++) {
-			if (simbols[i] == name) {
+			if (simbols[i].equals(name)) {
 				return new Token(i, -1, -2);
 			}
 		}
@@ -143,7 +150,7 @@ public class LexicalAnalyzer {
 		int i = 0;
 
 		for (i = 0; i < names.size(); i++) {
-			if (names.get(i) == name) {
+			if (names.get(i).equals(name)) {
 				return i;
 			}
 		}
@@ -156,7 +163,7 @@ public class LexicalAnalyzer {
 		int i = 0;
 
 		for (i = 0; i < constants.size(); i++) {
-			if (constants.get(i) == constant) {
+			if (constants.get(i).endsWith(constant)) {
 				return i;
 			}
 		}

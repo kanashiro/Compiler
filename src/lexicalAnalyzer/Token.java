@@ -27,6 +27,8 @@ public class Token {
 		this.type = type;
 	}
 	
+	
+	
 	public static Token unknown(){
 		return new Token(-1,-1,-3);
 	}
@@ -34,15 +36,15 @@ public class Token {
 	public void print(){
 		switch (this.type) {
 		case (-3):
-			System.out.println("primario: " + this.primaryToken + " secundario: " + this.secondaryToken  + " tipo: unknown");	
+			System.out.println("primario: " + this.primaryToken + " tipo: unknown");	
 			break;
 	
 		case (-2):
-			System.out.println("primario: " + this.primaryToken + " secundario: " + this.secondaryToken  + " tipo: simbol");
+			System.out.println("primario: " + this.primaryToken + " tipo: simbol");
 			break;
 	
 		case (-1):
-			System.out.println("primario: " + this.primaryToken + " secundario: " + this.secondaryToken  + " tipo: keyWord");
+			System.out.println("primario: " + this.primaryToken + " tipo: keyWord");
 			break;
 		
 		case (0):
