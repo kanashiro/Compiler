@@ -64,9 +64,9 @@ public class SyntaticAnalyzer {
 		 
 		for (int i = 0; i < 75; i++) {
 			if(token.word.equals(Tables.listOfSymbols.get(i))){
-			   System.out.println(state + " " + i);
+			   System.out.println("estado:" + state + " sinbolo:" + token.word);
 			   action =  Tables.actionList.get(state).get(i);  
-			   System.out.println("action " + action);
+			   System.out.println("ação " + action);
 			}
 		}
 
