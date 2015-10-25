@@ -47,11 +47,11 @@ public class LexicalAnalyzer {
 	public void Analyzer() throws IOException {
 		Token token = nextToken();
 
-		 while (token.type != -3){
+		do{
 			
 			token.print();
 			token = nextToken();
-		}
+		} while (token.type != -3);
 
 	}
 
@@ -73,9 +73,11 @@ public class LexicalAnalyzer {
 			this.nextChar = readChar();
 		}
 		
+		String text = "";
+		
 		// testando se é letra
 		if (Character.isLetter(this.nextChar)) {
-			String text = "";
+			
 
 			do {
 				text += this.nextChar;
@@ -119,6 +121,7 @@ public class LexicalAnalyzer {
 			this.nextChar = readChar();
 		}
 
+		token.word = text;
 		return token;
 	}
 

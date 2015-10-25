@@ -2,6 +2,8 @@ package lexicalAnalyzer;
 
 public class Token {
 	
+	public String word; 
+	
 	public int primaryToken;
 	
 	public int secondaryToken;
