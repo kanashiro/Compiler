@@ -1,0 +1,33 @@
+Productions
+
+$accept -> P $end
+P -> LDE
+LDE -> LDE DE
+LDE -> DE
+DE -> S
+DE -> DV
+T -> integer
+T -> char
+T -> boolean
+T -> string
+B -> NB { LDV LS }
+LDV -> LDV DV
+LDV -> DV
+LS -> LS S
+LS -> S
+DV -> var LI : T ;
+LI -> LI , IDD
+LI -> IDD
+S -> B
+S -> IDU = E ;
+E -> L
+E -> L + E
+E -> L - E
+E -> L * E
+E -> L / E
+L -> IDU
+L -> NUM
+NUM -> n
+IDU -> ID
+IDD -> ID
+NB ->
