@@ -59,9 +59,14 @@ public class SyntaticAnalyzer {
 
 
 	private int getAction(int state, Token token) {
+		for (int i = 0; i < 75; i++) {
+			if(token.word.equals(Tables.listOfSymbols.get(i))){
+			   return Tables.actionList.get(state).get(i);  
+			}
+		}
+
 		return 0;
 	}
-	
 	
 	
 }
