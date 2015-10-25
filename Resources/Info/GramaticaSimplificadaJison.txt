@@ -1,0 +1,81 @@
+%%
+
+P
+: LDE
+;
+
+LDE
+: LDE DE
+| DE
+;
+
+DE
+: S
+| DV
+;
+
+T
+: 'integer'
+| 'char'
+| 'boolean' 
+| 'string'
+;
+
+B
+: NB '{' LDV LS '}'
+;
+
+LDV 
+: LDV DV
+| DV
+;
+
+LS
+: LS S
+| S
+;
+
+
+DV
+: 'var' LI ':' T ';'
+;
+
+LI
+: LI ',' IDD
+| IDD
+;
+
+S
+: B
+| IDU '=' E ';'
+;
+
+E
+: L
+| L '+' E
+| L '-' E
+| L '*' E 
+| L '/' E
+;
+
+L
+: IDU
+| NUM
+;
+
+
+NUM
+: 'n'
+;
+
+IDU
+: ID
+;
+
+IDD
+: ID
+;
+
+NB
+: 
+; 
