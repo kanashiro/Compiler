@@ -2,6 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Avell G1511/Documents/Programas Java/Compiler/Resources/ExcelReader/jexcelapi/jxl.jar"/>
+	<classpathentry kind="lib" path="Resources/ExcelReader/jexcelapi/jxl.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
