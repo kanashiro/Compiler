@@ -18,7 +18,6 @@ public class Tables {
 	
 	
 	public static void CreateActionTable() throws BiffException, IOException {
-		actionList.add(new ArrayList<Integer>());
 		
 		Workbook arq = Workbook.getWorkbook(new File(
 				"Resources/ActionTable/ActionTable.xls"));
@@ -66,6 +65,7 @@ public class Tables {
 
 	}
 
+	/*
 	public static void main(String[] args) throws IOException, BiffException {
 
 		CreateActionTable();
@@ -74,6 +74,6 @@ public class Tables {
 		for (int i = 0; i < 75; i++) {
 			System.out.println(i+1 + "  ---  " + actionList.get(3).get(i));
 		}
-	}
+	}*/
 
 }

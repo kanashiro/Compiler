@@ -1,20 +1,19 @@
 package compilerExe;
 
 import java.io.File;
-import java.io.IOException;
-
-import lexicalAnalyzer.LexicalAnalyzer;
+import syntaticAnalyzer.SyntaticAnalyzer;
+import syntaticAnalyzer.Tables;
 
 public class Compiler {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		File program = new File("Resources/Programs/programa1.txt");
 		
-		// Analizador Léxico
+		// Analizador Sintatico
 		
-		LexicalAnalyzer lexical = new LexicalAnalyzer(program);
-		lexical.Analyzer();
-
+		Tables.CreateActionTable();
+		SyntaticAnalyzer syntaticAnalyzer = new  SyntaticAnalyzer(program);
+		syntaticAnalyzer.Analyze();
 	}
 
 }

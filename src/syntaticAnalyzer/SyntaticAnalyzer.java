@@ -8,7 +8,7 @@ import lexicalAnalyzer.Token;
 
 public class SyntaticAnalyzer {
 	
-	private final int FINAL = 1;
+	private final int FINAL = 1000;
 	
 	private ArrayList<Integer> syntacticStack = new ArrayList<Integer>();
 	
@@ -26,7 +26,7 @@ public class SyntaticAnalyzer {
 		Token token = this.lexicalAnalyzer.nextToken();
 		
 		do {
-		 
+	
 			action = getAction(state, token);
 		
 		 if (action > 0) {
@@ -54,18 +54,23 @@ public class SyntaticAnalyzer {
 
 
 	private int getAction(Integer state, String left) {
+		System.out.println("aqui");
 		return 0;
 	}
 
 
 	private int getAction(int state, Token token) {
+		int action = 0;
+		 System.out.println(token.word);
 		for (int i = 0; i < 75; i++) {
 			if(token.word.equals(Tables.listOfSymbols.get(i))){
-			   return Tables.actionList.get(state).get(i);  
+			   System.out.println(state + " " + i);
+			   action =  Tables.actionList.get(state).get(i);  
+			   System.out.println("action " + action);
 			}
 		}
 
-		return 0;
+		return action;
 	}
 	
 	

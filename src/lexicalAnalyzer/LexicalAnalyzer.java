@@ -85,7 +85,7 @@ public class LexicalAnalyzer {
 			} while (Character.isLetterOrDigit(this.nextChar)
 					|| this.nextChar == '_');
 			
-			System.out.println("word: " + text);
+
 			token = searchKeyWord(text);
 		} else if (Character.isDigit(this.nextChar)) {
 			String numeral = "";
@@ -121,6 +121,9 @@ public class LexicalAnalyzer {
 			this.nextChar = readChar();
 		}
 
+		if(!token.word.isEmpty() && token.word == "ID"){
+			text = "ID";
+		}
 		token.word = text;
 		return token;
 	}
@@ -133,8 +136,10 @@ public class LexicalAnalyzer {
 				return new Token(i, -1, -1);
 			}
 		}
-
-		return new Token(keyWords.length - 1, searchName(name), 3);
+		
+        Token token = new Token(keyWords.length - 1, searchName(name), 3);
+        token.word = "ID";
+		return token;
 	}
 
 	public Token searchSimbol(String name) {
