@@ -33,15 +33,17 @@ public class SyntaticAnalyzer {
 			this.syntacticStack.add(0, action);
 			token = lexicalAnalyzer.nextToken();
 		}else{
-		
-			int len = 0;
-			String left = "";  
 			if(action < 0){
+				int len = Tables.lengthList.get(action*-1 - 1);
+				String left = Tables.leftList.get(action*-1 - 1);  
+						
 				for (int i = 0;  i < len; i++) {
 					this.syntacticStack.remove(0);					
 				}
+				
 				int newAction = getAction(this.syntacticStack.get(0), left);
 				this.syntacticStack.add(0, newAction);
+				
 			}else{
 				throw new Exception("Syntax Error");
 			}
@@ -54,8 +56,17 @@ public class SyntaticAnalyzer {
 
 
 	private int getAction(Integer state, String left) {
-		System.out.println("aqui");
-		return 0;
+		int action = 0;
+		 
+		for (int i = 0; i < 75; i++) {
+			if(left.equals(Tables.listOfSymbols.get(i))){
+			   System.out.println("estado:" + state + " simbolo:" + left);
+			   action =  Tables.actionList.get(state).get(i);  
+			   System.out.println("ação " + action);
+			}
+		}
+
+		return action;
 	}
 
 

@@ -8,6 +8,7 @@ public class Token {
 	
 	public int secondaryToken;
 	
+	// -4 -> final
 	// -3 -> unknown
 	// -2 -> simbol
 	// -1 -> keyWord

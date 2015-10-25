@@ -1,6 +1,7 @@
 package compilerExe;
 
 import java.io.File;
+
 import syntaticAnalyzer.SyntaticAnalyzer;
 import syntaticAnalyzer.Tables;
 
@@ -12,6 +13,8 @@ public class Compiler {
 		// Analizador Sintatico
 		
 		Tables.CreateActionTable();
+		Tables.CreateReductionTable();
+		
 		SyntaticAnalyzer syntaticAnalyzer = new  SyntaticAnalyzer(program);
 		syntaticAnalyzer.Analyze();
 	}

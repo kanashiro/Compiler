@@ -1,3 +1,4 @@
 function soma(a1 : integer) : integer{
-return a1+1;
-}
+var saida : integer;
+break;
+}$end

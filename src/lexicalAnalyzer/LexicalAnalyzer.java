@@ -32,7 +32,7 @@ public class LexicalAnalyzer {
 			// simbolos
 			":", ";", ",", "=", "{", "}", "[", "]", "(", ")", "&&", "||", "<",
 			">", "<=", ">=", "!=", "==", "+", "++", "-", "--", "*", "/", ".",
-			"!" };
+			"!" , "$end"};
 
 	public LexicalAnalyzer(File arq) throws IOException {
 
@@ -70,6 +70,12 @@ public class LexicalAnalyzer {
 		}
 		
 		String text = "";
+		
+		if(this.nextChar == '$'){
+			token = new Token(-1,-1,-4);
+			token.word = "$end";
+			return token;
+		}
 		
 		// testando se é letra
 		if (Character.isLetter(this.nextChar)) {
@@ -120,6 +126,20 @@ public class LexicalAnalyzer {
 		if(token.type == 3 || token.type == -2){
 			text = token.word;
 		}
+		
+		if(token.type == 0){
+			text = "c";
+		}
+		
+		if(token.type == 1){
+			text = "s";
+		}
+		
+		
+		if(token.type == 2){
+			text = "n";
+		}
+			
 		token.word = text;
 		return token;
 	}
