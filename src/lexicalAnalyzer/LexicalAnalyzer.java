@@ -32,7 +32,7 @@ public class LexicalAnalyzer {
 			// simbolos
 			":", ";", ",", "=", "{", "}", "[", "]", "(", ")", "&&", "||", "<",
 			">", "<=", ">=", "!=", "==", "+", "++", "-", "--", "*", "/", ".",
-			"!" , "$end"};
+			"!" , "$end", "NB"};
 
 	public LexicalAnalyzer(File arq) throws IOException {
 
@@ -132,12 +132,12 @@ public class LexicalAnalyzer {
 		}
 		
 		if(token.type == 1){
-			text = "s";
+			text = "n";
 		}
 		
 		
 		if(token.type == 2){
-			text = "n";
+			text = "s";
 		}
 			
 		token.word = text;
@@ -174,10 +174,10 @@ public class LexicalAnalyzer {
 
 	public int searchName(String name) {
 		int i = 0;
-
+        //System.out.println("NOME:" + name);
 		for (i = 0; i < names.size(); i++) {
 			if (names.get(i).equals(name)) {
-				return i;
+				return i+1;
 			}
 		}
 

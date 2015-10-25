@@ -22,7 +22,7 @@ public class Tables {
 	public static void CreateActionTable() throws BiffException, IOException {
 		
 		Workbook arq = Workbook.getWorkbook(new File(
-				"Resources/ActionTable/ActionTable3.xls"));
+				"Resources/ActionTable/ActionTable4.xls"));
 		Sheet table = arq.getSheet(0);
 
 		int collums = table.getColumns();
@@ -70,7 +70,7 @@ public class Tables {
 	public static void CreateReductionTable() throws BiffException, IOException {
 		
 		Workbook arq = Workbook.getWorkbook(new File(
-				"Resources/ActionTable/ReductionTable3.xls"));
+				"Resources/ActionTable/ReductionTable4.xls"));
 		Sheet table = arq.getSheet(0);
 		int lines = table.getRows();
 		

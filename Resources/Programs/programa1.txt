@@ -1,4 +1,5 @@
-function soma(a1 : integer) : integer{
-var saida : integer;
-break;
+var a2,a3 : integer;
+{
+var a4 : integer;
+a2 = a3 + 1;
 }$end
