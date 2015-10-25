@@ -13,7 +13,10 @@ public class Tables {
 	public static ArrayList<String> listOfSymbols = new ArrayList<String>();
 
 	public static ArrayList<ArrayList<Integer>> actionList = new ArrayList<ArrayList<Integer>>();
+	
+	public static ArrayList<Integer> lengthList = new ArrayList<Integer>();
 
+	public static ArrayList<String> leftList = new ArrayList<String>();
 	
 	
 	public static void CreateActionTable() throws BiffException, IOException {
@@ -63,6 +66,13 @@ public class Tables {
 		}
 
 	}
+	
+	public void createReductionTable() {
+		
+		
+		
+	}
+	
 
 	/*
 	public static void main(String[] args) throws IOException, BiffException {
