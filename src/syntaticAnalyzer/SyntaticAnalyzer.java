@@ -26,7 +26,7 @@ public class SyntaticAnalyzer {
 		Token token = this.lexicalAnalyzer.nextToken();
 		
 		do {
-	
+			System.out.println("_" + token.word + "_" + token.type);
 			action = getAction(state, token);
 		
 		 if (action > 0) {
@@ -61,7 +61,7 @@ public class SyntaticAnalyzer {
 
 	private int getAction(int state, Token token) {
 		int action = 0;
-		 System.out.println(token.word);
+		 
 		for (int i = 0; i < 75; i++) {
 			if(token.word.equals(Tables.listOfSymbols.get(i))){
 			   System.out.println(state + " " + i);

@@ -3,13 +3,9 @@ package lexicalAnalyzer;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-
-import com.sun.corba.se.impl.io.ValueUtility;
 
 public class LexicalAnalyzer {
 
@@ -95,7 +91,7 @@ public class LexicalAnalyzer {
 				this.nextChar = readChar();
 			} while (Character.isDigit(this.nextChar));
 			
-			System.out.println("numeral: " + numeral);
+			//System.out.println("numeral: " + numeral);
 			token = new Token(keyWords.length - 3, searchConst(numeral), 1);
 		} else if (this.nextChar == '"') {
 			String string = "";
@@ -105,24 +101,24 @@ public class LexicalAnalyzer {
 				this.nextChar = readChar();
 			} while (this.nextChar != '"');
 			string += '"';
-			System.out.println("strinval: " + string);
+			//System.out.println("strinval: " + string);
 			token = new Token(keyWords.length - 3, searchConst(string), 2);
 		} else if (this.nextChar == '\'') {
 			this.nextChar = readChar();
-			System.out.println("char: " + this.nextChar);
+			//System.out.println("char: " + this.nextChar);
 			token = new Token(keyWords.length - 4,
 					searchConst(Character.toString(this.nextChar)), 0);
 			// pular ' e ler o próximo
 			this.nextChar = readChar();
 			this.nextChar = readChar();
 		} else {
-			System.out.println("simbol: " + this.nextChar);
+			//System.out.println("simbol: " + this.nextChar);
 			token = searchSimbol(Character.toString(this.nextChar));
 			this.nextChar = readChar();
 		}
 
-		if(!token.word.isEmpty() && token.word == "ID"){
-			text = "ID";
+		if(token.type == 3 || token.type == -2){
+			text = token.word;
 		}
 		token.word = text;
 		return token;
@@ -147,7 +143,9 @@ public class LexicalAnalyzer {
 
 		for (i = 0; i < simbols.length; i++) {
 			if (simbols[i].equals(name)) {
-				return new Token(i, -1, -2);
+				Token token = new Token(i, -1, -2);
+				token.word = name;
+				return token;
 			}
 		}
 
