@@ -2,12 +2,19 @@ package lexicalAnalyzer;
 
 public class Token {
 	
+	//qual palavra foi lida para o token
+	//no caso de ID ou símbolo, a word será o nome do ID ou do símbolo
+	//no caso de constantes, a word será
+	// 	n - numeral
+	//  s - string
+	//  c - char
 	public String word = ""; 
 	
 	public int primaryToken;
 	
 	public int secondaryToken;
 	
+	//OS TIPOS QUE UM TOKEN PODE TER:
 	// -4 -> final
 	// -3 -> unknown
 	// -2 -> simbol
@@ -31,11 +38,13 @@ public class Token {
 	}
 	
 	
-	
+	//retorna um token do tipo unknown
 	public static Token unknown(){
 		return new Token(-1,-1,-3);
 	}
 	
+	//imprime o valor do token primário, seu tipo e, se existir, o token secundário
+	//só é usada para testes do analisador sintático, não aparecendo na versão final do compilador
 	public void print(){
 		switch (this.type) {
 		case (-3):

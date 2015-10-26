@@ -1,2 +1,2 @@
 # Compiler
-This is a project of one simple compiler created in the course os compilers at IME - 2015
+This is a project of one simple compiler created in the course of compilers at IME - 2015
