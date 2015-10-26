@@ -70,7 +70,7 @@ public class SyntaticAnalyzer {
 					int newAction = getAction(this.syntacticStack.get(0), left);
 
 					// executa a analise de escopo
-					scopeAnalise(action, token, seconToken);
+					scopeAnalyzer.ScopeAnalise(action, token, seconToken);
 
 					this.syntacticStack.add(0, newAction);
 
@@ -90,34 +90,7 @@ public class SyntaticAnalyzer {
 
 	}
 
-	// de acordo com a regra de redução, pode executar alguma função da analise
-	// de escopo
-	private void scopeAnalise(int action, Token token, int seconToken)
-			throws Exception {
 
-		// redução em NB
-		if (action == -30) {
-			scopeAnalyzer.NewBlock();
-		}
-
-		// fim do bloco
-		if (action == -10) {
-			scopeAnalyzer.EndBlock();
-		}
-
-		// IDD
-		if (action == -29) {
-			token.secondaryToken = seconToken;
-			scopeAnalyzer.Search(token.secondaryToken);
-			scopeAnalyzer.Define(token);
-		}
-
-		// IDU
-		if (action == -28) {
-			token.secondaryToken = seconToken;
-			scopeAnalyzer.Find(token.secondaryToken);
-		}
-	}
 
 	// pega ação da tabela de ação de acordo com o left da tabela auxiliar
 	private int getAction(Integer state, String left) {
