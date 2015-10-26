@@ -2,7 +2,7 @@
  * 
  */
 /**
- * @author WillianKanashiro
+ * @author WillianKanashiro and MarcellaMercês
  *
  */
 package lexicalAnalyzer;

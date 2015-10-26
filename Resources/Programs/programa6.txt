@@ -1,5 +1,0 @@
-var a2,a2 : integer;
-{
-var a4 : integer;
-a2 = a4 + 1;
-}$end
