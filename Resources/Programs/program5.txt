@@ -1,0 +1,5 @@
+var a2 : integer;
+{
+var a2 : integer;
+a2 = a2 + 1;
+}$end
