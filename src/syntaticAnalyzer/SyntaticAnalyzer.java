@@ -70,7 +70,7 @@ public class SyntaticAnalyzer {
 					int newAction = getAction(this.syntacticStack.get(0), left);
 
 					// executa a analise de escopo
-					scopeAnalyzer.ScopeAnalise(action, token, seconToken);
+					scopeAnalyzer.ScopeAnalize(action, token, seconToken);
 
 					this.syntacticStack.add(0, newAction);
 

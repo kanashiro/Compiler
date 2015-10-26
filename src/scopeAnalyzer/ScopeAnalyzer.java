@@ -13,7 +13,7 @@ public class ScopeAnalyzer {
 
 	// de acordo com a regra de redução, pode executar alguma função da analise
 	// de escopo
-	public void ScopeAnalise(int action, Token token, int seconToken)
+	public void ScopeAnalize(int action, Token token, int seconToken)
 			throws Exception {
 
 		// redução em NB
