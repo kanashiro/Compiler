@@ -18,8 +18,8 @@ public class TypeAnalyzer {
 	
 	private CodeGenerator codeGenerator;
 	
-	public TypeAnalyzer() throws IOException{
-		this.codeGenerator = new CodeGenerator("teste");
+	public TypeAnalyzer(String programName) throws IOException{
+		this.codeGenerator = new CodeGenerator("code" + programName);
 		this.currentBlockNumberOfVars.add(0);
 	}
 	
@@ -164,7 +164,7 @@ public class TypeAnalyzer {
 				if(!CheckTypes(e, idu)){
 					throw new Exception("Erro: type mismatch - atribuição inválida");
 				}
-				codeGenerator.writeCode("\tDUP\n\tSTORE_VAR " + idu.index);
+				codeGenerator.writeCode("\tDUP\n\tSTORE_VAR " + idu.index + "\n\tPOP\n");
 			}
 		}
 		
@@ -174,8 +174,8 @@ public class TypeAnalyzer {
 			if(rightToken.word.equals("ID")){
 				codeGenerator.writeCode("\tLOAD_VAR " + index + "\n");
 			}
-			if(rightToken.word.equals("NUM")||rightToken.word.equals("STR")){
-				codeGenerator.writeCode("\tLOAD_CONST " + rightToken.secondaryToken);
+			if(rightToken.word.equals("n")||rightToken.word.equals("s")){
+				codeGenerator.writeCode("\tLOAD_CONST " + rightToken.secondaryToken +"\n");
 			}
 			
 		}
@@ -231,4 +231,7 @@ public class TypeAnalyzer {
 		}
 	}
 	
+	public void endCodeGenerator() throws IOException{
+		codeGenerator.closeFile();
+	}
 }

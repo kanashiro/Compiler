@@ -13,7 +13,7 @@ public class CodeGenerator {
 	public String code = "";
 	
 	public CodeGenerator(String program) throws IOException {
-		String fileName = "Resources/GeneratedCodes/" + program + ".txt";
+		String fileName = "Resources/GeneratedCodes/" + program;
 		file = new File(fileName);
 		if(!file.exists())
 			file.createNewFile();

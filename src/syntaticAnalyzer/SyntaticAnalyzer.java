@@ -29,7 +29,7 @@ public class SyntaticAnalyzer {
 		lexicalAnalyzer = new LexicalAnalyzer(arq);
 		scopeAnalyzer = new ScopeAnalyzer();
 		scopeAnalyzer.NewBlock();
-		typeAnalyzer = new TypeAnalyzer();
+		typeAnalyzer = new TypeAnalyzer(arq.getName());
 	}
 
 	// análise sintática
@@ -95,6 +95,7 @@ public class SyntaticAnalyzer {
 				state = this.syntacticStack.get(0);
 				
 			} while (state != FINAL);
+			typeAnalyzer.endCodeGenerator();
 			System.out.println("Programa compilado com sucesso!");
 
 		} catch (Exception e) {
