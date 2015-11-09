@@ -33,7 +33,7 @@ public class Compiler {
 				break;
 			}
 
-			if(option <0 || option > 6){
+			if(option <0 || option > 10){
 				System.out.println("Opção Inválida!");
 				continue;
 			}
@@ -86,6 +86,11 @@ public class Compiler {
 				.println("5 - programa sem erros. Variável com mesmo nome em escopo diferente");
 		System.out
 				.println("6 - erro de escopo: Identificador já existente");
+		System.out.println("7 - erro de tipo. atribuição incorreta");
+		System.out.println("8 - erro de tipo. operações com tipos diferentes");
+		System.out.println("9 - erro de tipo. operação incorreta com tipo string");
+		System.out
+		.println("10 - programa sem erros. soma entre strings é correta");
 		System.out.println("\n0 - sair");
 	}
 }

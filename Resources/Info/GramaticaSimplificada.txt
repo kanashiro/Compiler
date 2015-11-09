@@ -27,7 +27,9 @@ E -> L * E
 E -> L / E
 L -> IDU
 L -> NUM
+L -> STR
 NUM -> n
+STR -> s
 IDU -> ID
 IDD -> ID
 NB ->

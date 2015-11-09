@@ -57,7 +57,7 @@ public class LexicalAnalyzer {
 			
 			token.print();
 			token = nextToken();
-		} while (token.type != -3);
+		} while (token.classe != -3);
 
 	}
 
@@ -167,22 +167,22 @@ public class LexicalAnalyzer {
 	 */
 	public void setTokenWord(Token token, String text) {
 		//se o token é id ou símbolo, seu word seguirá sendo id ou símbolo
-		if(token.type == 3 || token.type == -2){
+		if(token.classe == 3 || token.classe == -2){
 			text = token.word;
 		}
 		
 		//se for um caracter, o word será 'c'
-		if(token.type == 0){
+		if(token.classe == 0){
 			text = "c";
 		}
 		
 		//se for um número, o word será 'n'
-		if(token.type == 1){
+		if(token.classe == 1){
 			text = "n";
 		}
 		
 		//se for uma string, o word será 's'
-		if(token.type == 2){
+		if(token.classe == 2){
 			text = "s";
 		}
 			

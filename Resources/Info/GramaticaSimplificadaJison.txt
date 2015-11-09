@@ -61,11 +61,15 @@ E
 L
 : IDU
 | NUM
+| STR
 ;
-
 
 NUM
 : 'n'
+;
+
+STR
+: ’s’
 ;
 
 IDU

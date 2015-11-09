@@ -1,0 +1,5 @@
+var s1, s2 : string;
+{
+var s4 : string;
+s4 = s1 * s2;
+}$end

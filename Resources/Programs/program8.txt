@@ -1,0 +1,5 @@
+var s1 : string;
+{
+var s4 : string;
+s4 = s1 + 1;
+}$end

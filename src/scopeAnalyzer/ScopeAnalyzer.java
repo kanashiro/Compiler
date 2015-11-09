@@ -13,35 +13,35 @@ public class ScopeAnalyzer {
 
 	// de acordo com a regra de redução, pode executar alguma função da analise
 	// de escopo
-	public void ScopeAnalize(int action, Token token, int seconToken)
+	public void ScopeAnalize(String left, Token token, int secondToken)
 			throws Exception {
 
+		
 		// redução em NB
-		if (action == -30) {
+		if (left.equals("NB")) {
 			NewBlock();
 		}
 
 		// fim do bloco
-		if (action == -10) {
+		if (left.equals("B")) {
 			EndBlock();
 		}
 
 		// IDD, se encontra o token no mesmo nível retorna um erro de escopo
-		if (action == -29) {
-			token.secondaryToken = seconToken;
+		if (left.equals("IDD")) {
+			token.secondaryToken = secondToken;
 			if (Search(token.secondaryToken) != -1) {
 				throw new Exception(
 						"Erro de escopo. Já existe um identificador com este nome.");
 			} else {
 				Define(token);
 			}
-
 		}
 
 		// IDU, se não encontra o token em nenhum nível retorna um erro de
 		// escopo
-		if (action == -28) {
-			token.secondaryToken = seconToken;
+		if (left.equals("IDU")) {
+			token.secondaryToken = secondToken;
 			if (Find(token.secondaryToken) == null) {
 				throw new Exception(
 						"Erro de escopo. Identificador não declarado.");

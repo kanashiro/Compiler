@@ -1,5 +1,7 @@
 package lexicalAnalyzer;
 
+import typeAnalyzer.Kind;
+
 public class Token {
 	
 	//qual palavra foi lida para o token
@@ -14,7 +16,7 @@ public class Token {
 	
 	public int secondaryToken;
 	
-	//OS TIPOS QUE UM TOKEN PODE TER:
+	//AS CLASSES QUE UM TOKEN PODE TER:
 	// -4 -> final
 	// -3 -> unknown
 	// -2 -> simbol
@@ -23,18 +25,39 @@ public class Token {
 	// 1  -> int
 	// 2  -> string
 	// 3  -> id
+	public int classe;
+	
+	public Kind kind;
+	
+	//tipos:
+	//1-int
+	//2-char
+	//3-boolean
+	//4-string
+	//0-universal
 	public int type;
+	
+	//"size" é o tamanho do espaço ocupado pelo token e 
+	//"index" é sua posição entre as variáveis de uma função
+	public int size;
+	public int index;
 	
 	public Token(int primary){
 		this.primaryToken = primary;
 		this.secondaryToken = -1;
-		this.type = -1;
+		this.classe = -1;
+		this.kind = Kind.NO_KIND_DEF_;
+		this.size = 0;
+		this.index = -1;
 	}
 	
 	public Token(int primary, int secundary, int type){
 		this.primaryToken = primary;
 		this.secondaryToken = secundary;
-		this.type = type;
+		this.classe = type;
+		this.kind = Kind.NO_KIND_DEF_;
+		this.size = 0;
+		this.index = -1;
 	}
 	
 	
@@ -46,7 +69,7 @@ public class Token {
 	//imprime o valor do token primário, seu tipo e, se existir, o token secundário
 	//só é usada para testes do analisador sintático, não aparecendo na versão final do compilador
 	public void print(){
-		switch (this.type) {
+		switch (this.classe) {
 		case (-3):
 			System.out.println("primario: " + this.primaryToken + " tipo: unknown");	
 			break;
@@ -78,5 +101,10 @@ public class Token {
 		default:
 			break;
 		}
+	}
+	
+	@Override
+	public String toString() {
+		return word;
 	}
 }

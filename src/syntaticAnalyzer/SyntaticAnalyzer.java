@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import codeGenerator.CodeGenerator;
 import scopeAnalyzer.ScopeAnalyzer;
+import typeAnalyzer.TypeAnalyzer;
 import lexicalAnalyzer.LexicalAnalyzer;
 import lexicalAnalyzer.Token;
 
@@ -18,11 +20,16 @@ public class SyntaticAnalyzer {
 	private LexicalAnalyzer lexicalAnalyzer;
 
 	private ScopeAnalyzer scopeAnalyzer;
+	
+	private TypeAnalyzer typeAnalyzer;
+	
+	private ArrayList<Token> tokensToReduce = new ArrayList<>();
 
 	public SyntaticAnalyzer(File arq) throws IOException {
 		lexicalAnalyzer = new LexicalAnalyzer(arq);
 		scopeAnalyzer = new ScopeAnalyzer();
 		scopeAnalyzer.NewBlock();
+		typeAnalyzer = new TypeAnalyzer();
 	}
 
 	// análise sintática
@@ -36,15 +43,17 @@ public class SyntaticAnalyzer {
 			// adiciona na pilha o estado 0
 			this.syntacticStack.add(0, 0);
 			Token token = this.lexicalAnalyzer.nextToken();
-
-			int seconToken = 0;
+			
+			tokensToReduce.add(token);
+			
+			int secondToken = 0;
 
 			do {
 				// se o token lido é ID, guardamos o valor do seu token
 				// secundário que será
 				// utilizado em reduções para IDD e IDU
 				if (token.word == "ID") {
-					seconToken = token.secondaryToken;
+					secondToken = token.secondaryToken;
 				}
 				action = getAction(state, token);
 
@@ -54,12 +63,15 @@ public class SyntaticAnalyzer {
 				if (action > 0) {
 					this.syntacticStack.add(0, action);
 					token = lexicalAnalyzer.nextToken();
-
+					
+					tokensToReduce.add(token);
+					
 					// se a ação é negativa, então existe uma redução
 				} else if (action < 0) {
 
 					int len = Tables.lengthList.get(action * -1 - 1);
 					String left = Tables.leftList.get(action * -1 - 1);
+					
 
 					// remove elementos da pilha de acordo com a tabela auxiliar
 					for (int i = 0; i < len; i++) {
@@ -70,8 +82,9 @@ public class SyntaticAnalyzer {
 					int newAction = getAction(this.syntacticStack.get(0), left);
 
 					// executa a analise de escopo
-					scopeAnalyzer.ScopeAnalize(action, token, seconToken);
-
+					scopeAnalyzer.ScopeAnalize(left, token, secondToken);
+					typeAnalyzer.typeAnalisis(left, len, token, tokensToReduce);
+					
 					this.syntacticStack.add(0, newAction);
 
 					// se a ação é zero, então existe um erro sintático
@@ -80,7 +93,7 @@ public class SyntaticAnalyzer {
 				}
 
 				state = this.syntacticStack.get(0);
-
+				
 			} while (state != FINAL);
 			System.out.println("Programa compilado com sucesso!");
 
