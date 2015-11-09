@@ -28,17 +28,6 @@ public class TypeAnalyzer {
 		//começo a avaliar o penultimo elemento
 		int size = tokensToReduce.size()-1;
 		
-		//esse codigo só deveria ser usado no início de uma função. na falta delas foi colocado no começo de um bloco como exemplo
-		if(left.equals("NB")){
-			currentBlock++;
-			currentBlockNumberOfVars.add(0);
-		}
-		
-		if(left.equals("B")){
-			currentBlockNumberOfVars.remove(currentBlock);
-			currentBlock--;
-		}
-		
 		if (left.equals("IDD")) {
 			tokensToReduce.get(size-1).kind = Kind.NO_KIND_DEF_;
 		}
@@ -74,9 +63,9 @@ public class TypeAnalyzer {
 			if(len==1){
 				tokensToReduce.get(size-1).kind = Kind.VAR_;
 				int numOfVars = currentBlockNumberOfVars.get(currentBlock);
-				tokensToReduce.get(size-1).index = numOfVars + 1;
+				tokensToReduce.get(size-1).index = numOfVars;
 				elementosEmLI++;
-				currentBlockNumberOfVars.set(currentBlock, numOfVars);
+				currentBlockNumberOfVars.set(currentBlock, numOfVars+1);
 			}
 			if(len==3){
 				Token idd = tokensToReduce.get(size-1);
@@ -84,8 +73,8 @@ public class TypeAnalyzer {
 				tokensToReduce.get(size-3).kind = idd.kind;
 				elementosEmLI++;
 				int numOfVars = currentBlockNumberOfVars.get(currentBlock);
-				tokensToReduce.get(size-1).index = numOfVars + 1;
-				currentBlockNumberOfVars.set(currentBlock, numOfVars);
+				tokensToReduce.get(size-1).index = numOfVars;
+				currentBlockNumberOfVars.set(currentBlock, numOfVars+1);
 			}
 		}
 		
